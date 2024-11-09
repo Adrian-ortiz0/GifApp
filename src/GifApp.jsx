@@ -1,31 +1,37 @@
-import React from 'react';
-import {useState} from 'react';
-import { AddCategory } from './components/AddCategory';
+import React from "react";
+import { useState } from "react";
+import { AddCategory } from "./components/AddCategory";
+import { GifGrid } from "./components/GifGrid";
 
-export const GifApp = function() {
+export const GifApp = function () {
+  // Estamos creando una lista de categorias, por lo tanto el estado inicial es una lista vacia
 
-    // Estamos creando una lista de categorias, por lo tanto el estado inicial es una lista vacia
+  const [categories, setCategories] = useState(["One punch", "dragon ball"]);
 
-    const [categories, setCategories] = useState(["One punch", "dragon ball"]);
+  const onAddCategory = function (newCategory) {
+    const normalizedNewCategory = newCategory.toLowerCase().trim();
 
-    const onAddCategory = function(){
-        setCategories(["naruto", ...categories ]);
+    const valorFind = categories.find(function (category) {
+      return category.toLowerCase().trim() === normalizedNewCategory;
+    });
+
+    if (valorFind) {
+      alert("Esta categoria ya existe!");
+      return;
     }
+
+    setCategories([newCategory, ...categories]);
+  };
 
   return (
     <>
-        <h1>GifApp</h1>
+      <h1>GifApp</h1>
 
-        <AddCategory />
-        
-        <button onClick={onAddCategory}>Agregar</button>
+      <AddCategory onNewCategory={onAddCategory} />
 
-        <ol>
-                {categories.map(function(category){
-                    return <li key={category}>{category}</li>;
-                })}
-        </ol>
-
+      {categories.map(function (category) {
+        return <GifGrid key={category} category={category} />;
+      })}
     </>
-  )
-}
+  );
+};

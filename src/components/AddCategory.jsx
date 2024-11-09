@@ -1,25 +1,27 @@
-import {useState} from 'react';
+import { useState } from "react";
 
-export const AddCategory = function() {
+export const AddCategory = function ({ onNewCategory }) {
+  const [inputValue, setInputValue] = useState("");
 
-    const [inputValue, setInputValue] = useState("goku");
+  const onInputChange = function (e) {
+    setInputValue(e.target.value);
+  };
 
-    const onInputChange = function(e){
-        setInputValue(e.target.value);
-    }
-
-    const onSubmit = function(e){
-        e.preventDefault();
-
-    }
+  const onSubmit = function (e) {
+    e.preventDefault();
+    const newInputValue = inputValue.trim();
+    onNewCategory(newInputValue);
+    setInputValue("");
+  };
 
   return (
     <form onSubmit={onSubmit}>
-        <input type="text" 
-        placeholder="Buscar Gifs" 
-        value ={inputValue}
+      <input
+        type="text"
+        placeholder="Buscar Gifs"
+        value={inputValue}
         onChange={onInputChange}
-        />
+      />
     </form>
-  )
-}
+  );
+};

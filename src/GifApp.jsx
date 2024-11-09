@@ -6,7 +6,7 @@ import { GifGrid } from "./components/GifGrid";
 export const GifApp = function () {
   // Estamos creando una lista de categorias, por lo tanto el estado inicial es una lista vacia
 
-  const [categories, setCategories] = useState(["One punch", "dragon ball"]);
+  const [categories, setCategories] = useState(["One punch"]);
 
   const onAddCategory = function (newCategory) {
     const normalizedNewCategory = newCategory.toLowerCase().trim();

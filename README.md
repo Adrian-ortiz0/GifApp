@@ -38,11 +38,10 @@ const url = `https://api.giphy.com/v1/gifs/search?api_key=pLaJKoxqfuMuxxFMguoei1
 
 en el archivo GetGifs.js se realiza una petición usando el async/await de este modo:
 
-export const getGifs = async function (category) {
+`export const getGifs = async function (category) {
   const resp = await fetch(url);
   if (resp.ok) {
     const { data } = await resp.json();
-
     const gifs = data.map(function (img) {
       return {
         id: img.id,
@@ -54,7 +53,7 @@ export const getGifs = async function (category) {
   } else {
     return [];
   }
-};
+};`
 
 ## Uso 🤖
 
